@@ -4,26 +4,24 @@ import numpy as np
 #directions = {forward: 0, left: 1, right: -1}
 
 def stop():
-    arr = [0, 0]
-    show(arr)
+    arr1 = [0, 0]
+    show(arr1)
 
 def forward():
-    arr = [20, 0]
-    show(arr)
+    arr2 = [20, 0]
+    show(arr2)
 
 def left_turn():
     stop()
-    show(arr)
-    arr[1] = 1
-    show(arr)
+    arr3 = [0, 1]
+    show(arr3)
     
 def right_turn():
     stop()
-    show(arr)
-    arr[1] = -1
-    show(arr)
+    arr3 = [0, -1]
+    show(arr3)
     
-def show(arr)
+def show(arr):
     print(arr)
     
 # ---------------------------

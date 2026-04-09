@@ -1,21 +1,30 @@
 import cv2
 import numpy as np
-import time
 
+#directions = {forward: 0, left: 1, right: -1}
 
 def stop():
-    print("motor stopped") 
-    print("Speed set to 0%")
+    arr = [0, 0]
+    show(arr)
 
 def forward():
-    print("Going forward")
-    print("Speed set to max")
+    arr = [20, 0]
+    show(arr)
 
 def left_turn():
-    print("Going left")
+    stop()
+    show(arr)
+    arr[1] = 1
+    show(arr)
     
 def right_turn():
-    print("Going right")
+    stop()
+    show(arr)
+    arr[1] = -1
+    show(arr)
+    
+def show(arr)
+    print(arr)
     
 # ---------------------------
 # Camera + Obstacle Detection
@@ -27,7 +36,7 @@ while True:
     ret, frame = capture.read()
     if not ret:
         break
-
+    
     # Preprocess
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (3, 3), 0)
@@ -35,7 +44,7 @@ while True:
     
     # Find contours
     contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
+    
     obstacle_detected = False
     for cnt in contours:
         area2 = cv2.convexHull(cnt)
